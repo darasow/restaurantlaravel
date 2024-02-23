@@ -5,6 +5,7 @@ use App\Http\Controllers\Partenaire\PartenaireController;
 use App\Http\Controllers\Partenaire\DashboardController;
 use App\Http\Controllers\Categorie\CategorieController;
 use App\Http\Controllers\Restaurant\RestaurantController;
+use App\Http\Controllers\Element\ElementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::prefix('partenaires')->middleware('auth')->name('partenaires.')->group(fu
     Route::resource("dashboard", DashboardController::class);
     Route::resource("categorie", CategorieController::class);
     Route::resource("restaurant", RestaurantController::class);
+    Route::resource("element", ElementController::class);
 
 });
 

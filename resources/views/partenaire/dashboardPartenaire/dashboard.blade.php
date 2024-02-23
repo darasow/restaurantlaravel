@@ -1,4 +1,4 @@
-@extends('partenaire.dashboardPartenaire.base')
+@extends('partenaire.dashboardPartenaire.base', ['restaurant' => $restaurant])
 @section('title', 'Dashboard')
 
 @section('content')

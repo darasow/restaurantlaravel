@@ -14,24 +14,14 @@
 			<div class=" z-20 fixed md:h-24 left-0 right-0 bg-red-100 sm:py-1 md:py-5 grid grid-cols-2 place-content-between place-items-center md:w-full md:grid-cols-8 gap-5 md:space-x-2 lg:gap-10">
 				<!-- logo du client -->
 				<a href="" class="md:col-span-2 max-w-[100px] place-self-start">
-					<img class="w-full" src="" alt="logo-restaurant">
+					<img class="w-[70px] h-[70px] cursor-grab object-cover rounded-full duration-700 scale-[65%] hover:scale-75" src="/storage/{{$restaurant->avatar}}" alt="logo-restaurant">
 				</a>
 				<!-- adresse du client -->
 				<div class="h-8 md:max-w-[150px] md:col-span-2 md:min-w-max md:grid md:grid-cols-2 gap-5 md:gap-2 lg:gap-10 md:order-last md:place-self-start">
-                    <i class="cursor-pointer border-2 border-red-400 rounded-xl hover:bg-white hover:duration-700 min-w-max text-red-400  p-2 fa fa-map-marker your-address"> <span class="text-black " id="add-address">Votre Adresse</span></i>
-					<i class="cursor-pointer border-2 border-red-400 rounded-full hover:bg-white hover:duration-700 p-2 max-w-min md:min-w-max text-red-400 fa fa-user-circle"> <span class="text-black hidden md:inline-block" id="circle">Account</span></i>
+                    <i class="cursor-pointer border-2 border-red-400 rounded-xl hover:bg-white hover:duration-700 min-w-max text-red-400  p-2 fa fa-envelope  your-address"> <span class="text-black " id="add-address">{{ $restaurant->user->email }}</span></i>
+					<i class="cursor-pointer border-2 border-red-400 rounded-full hover:bg-white hover:duration-700 p-2 max-w-min md:min-w-max text-red-400 fa fa-user-circle"> <span class="text-black hidden md:inline-block" id="circle">{{ $restaurant->user->name }}</span></i>
                 </div>
-				<!-- svg: search, ..., cart-->
-				<div class="col-span-2 md:place-self-end md:col-span-3 md:gap-3  md:min-w-max md:space-x-1 flex w-full justify-around text-red-500">
-					<i class=" cursor-pointer sm:border-2 sm:border-red-400 rounded-full hover:bg-white hover:duration-700 md:hiddenx lg:inline-block py-2 px-3 text-xl font-black fa fa-heart-o" title="top"></i>
-					<i class="cursor-pointer sm:border-2 sm:border-red-400 rounded-full hover:bg-white hover:duration-700 py-2 px-3 text-xl font-bold fa fa-search md:order-first"> <span class="text-black text-lg hidden sm:inline-block">Search</span></i>
-                    <i class="cursor-pointer sm:border-2 sm:border-red-400 rounded-full hover:bg-white hover:duration-700 py-2 px-3 text-xl font-semibold fa fa-tags" title="Promo"></i>
-
-                   	<a href="">
-						<i class="cursor-pointer sm:border-2 sm:border-red-400 rounded-full hover:bg-white hover:duration-700 py-2 px-3 text-xl font-semibold fa fa-cart-plus"> <span class="text-black text-lg hidden sm:inline-block" id="cart-plus">0 Items</span></i>
-                	</a>
-				</div>
-
+				
 			</div>
 
 	
