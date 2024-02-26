@@ -13,13 +13,19 @@ return new class extends Migration
     {
         Schema::create('elements', function (Blueprint $table) {
             $table->id();
+            $table->string("titre");
+            $table->string("description");
+            $table->integer("prix");
+            $table->unsignedBigInteger('categorie_id');
+            $table->string('image')->nullable();
             $table->timestamps();
+            $table->foreign('categorie_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
     /**
      * Reverse the migrations.
-     */
+    */
     public function down(): void
     {
         Schema::dropIfExists('elements');

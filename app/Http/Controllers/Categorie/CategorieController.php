@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class CategorieController extends Controller
 {
 
-    public function getAllCategoriesUser()
+    public function getAllCategoriesRestaurant()
     {
         $restaurant = Session::get('restaurant');
         $categories = $restaurant->categories()->get();
@@ -21,9 +21,8 @@ class CategorieController extends Controller
     }
     public function index()
     {
-       
         
-        return View("partenaire.categorie.categorie",['categories' => $this->getAllCategoriesUser(), 'restaurant' => Session::get('restaurant')]);
+        return View("partenaire.categorie.categorie",['categories' => $this->getAllCategoriesRestaurant(), 'restaurant' => Session::get('restaurant')]);
     }
 
 
@@ -49,7 +48,7 @@ class CategorieController extends Controller
     public function edit(Categorie $categorie)
     {
        
-        return View("partenaire.categorie.categorie", ['categorieedit' => $categorie, 'categories' => $this->getAllCategoriesUser(), 'restaurant' => Session::get('restaurant')]);
+        return View("partenaire.categorie.categorie", ['categorieedit' => $categorie, 'categories' => $this->getAllCategoriesRestaurant(), 'restaurant' => Session::get('restaurant')]);
     }
 
     /**
