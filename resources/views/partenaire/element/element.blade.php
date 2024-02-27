@@ -37,14 +37,13 @@
 
 
         <!-- Formulaires d'ajout ... -->
-    <form class="bg-red-100  overflow-y-scroll  p-2 order-first md:order-last md:fixed md:right-0 md:top-20 md:w-[26%] lg:w-[28%] xl:w-[33%] z-40" enctype="multipart/form-data" method="post" action="{{ isset($elementedit) ? route('partenaires.element.update', $elementedit->id) : route('partenaires.element.store') }}">
+    <form class="bg-red-100    p-2 order-first md:order-last md:fixed md:right-0 md:top-20 md:w-[26%] lg:w-[28%] xl:w-[33%] z-40" enctype="multipart/form-data" method="post" action="{{ isset($elementedit) ? route('partenaires.element.update', $elementedit->id) : route('partenaires.element.store') }}">
             @csrf
             @if(isset($elementedit))
                 @method('PUT')
             @endif
-    <fieldset class="group p-2 border-2 overflow-y-scroll border-black rounded-lg grid grid-cols-3 gap-2 md:grid-cols-1">
-        <legend class="group-hover:bg-cyan-300/70 group-hover:rounded-lg group-hover:duration-1000 text-base font-bold text-center p-1">Ajout/Modification</legend>
-
+    <fieldset class="group p-2 border-2 h-[500px] border-black overflow-y-scroll rounded-lg grid grid-cols-3 gap-2 md:grid-cols-1">
+        <legend class="group-hover:bg-cyan-300/70  group-hover:rounded-lg group-hover:duration-1000 text-base font-bold text-center p-1">Ajout/Modification</legend>
         <!-- Titre -->
         <div>
             <label for="titre" class="block text-sm font-medium text-gray-700">Titre</label>
@@ -88,7 +87,7 @@
 
         @if ($errors->any())
             @foreach ($errors->all() as $error)
-                <div class="col-span-3 text-sm text-red-400 text-center mt-1">{{ $error }}</div>
+                <div class="col-span-1 text-sm text-red-400 text-center mt-1">{{ $error }}</div>
             @endforeach
         @endif
 

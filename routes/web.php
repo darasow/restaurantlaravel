@@ -6,8 +6,9 @@ use App\Http\Controllers\Partenaire\DashboardController;
 use App\Http\Controllers\Categorie\CategorieController;
 use App\Http\Controllers\Restaurant\RestaurantController;
 use App\Http\Controllers\Element\ElementController;
+use App\Http\Controllers\Table\TableController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/', function () {
+
+        $user = Auth::user();;
+        $restaurants = $user->restaurants()->get();
+        return view('partenaire.acceuil', ['restaurants' => $restaurants]);
+    
+})->middleware(['auth', 'verified'])->name('partenaire');
+
+
 Route::prefix('partenaires')->middleware('auth')->name('partenaires.')->group(function(){
 
     Route::resource("/", PartenaireController::class);
@@ -27,19 +38,10 @@ Route::prefix('partenaires')->middleware('auth')->name('partenaires.')->group(fu
     Route::resource("categorie", CategorieController::class);
     Route::resource("restaurant", RestaurantController::class);
     Route::resource("element", ElementController::class);
+    Route::resource("table", TableController::class);
 
 });
 
-
-/*
-Je vais mettre en place la structure pour le dashboard du partenaire
-- c'est a dire la page d'acceuil 
-apres la logique de creation des tables et leurs vue
-*/ 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

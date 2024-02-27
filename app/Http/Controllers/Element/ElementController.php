@@ -63,9 +63,27 @@ class ElementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ElementRequest $request, Element $element)
     {
-        //
+        if ($request->hasFile('image')) {
+            // si oui
+            if ($element->image) {
+                // on supprime l'ancienne image
+                Storage::disk('public')->delete($element->image);
+            }
+            // on enregistre la nouvelle image
+            $imagePath = $request->file('image')->store('elements', 'public'); 
+            $element->update(['image' => $imagePath]);
+        }
+
+        $element->update([
+            'titre' => $request->titre,
+            'description' => $request->description,
+            'prix' => $request->prix,
+            'categorie_id' => $request->categorie_id,
+        ]);
+        return to_route("partenaires.element.index")->with("success", 'Element modifier avec succes');
+
     }
 
     /**
