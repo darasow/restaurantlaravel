@@ -8,6 +8,10 @@
     <div class="grid grid-cols-1 md:grid-cols-3">
         <!-- LISTES des tables -->
         <section class="md:col-span-2">
+
+
+
+        
             <h1 class="font-black text-orange-600 text-xl md:text-3xl py-5 px-2">Mes Tables :</h1>
             @foreach ($tables as $table)
                 <div class="bg-gray-200 grid grid-cols-4 rounded-lg">
