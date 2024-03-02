@@ -18,13 +18,20 @@
                     <div class="bg-green-300/50 pb-5 hover:bg-green-300/90 hover:duration-700 max-w-[180px] flex flex-col justify-center items-center space-y-0 rounded-2xl relative">
                         <div class="relative w-[180px] h-[180px]">
                             <img class="z-0 w-full h-full cursor-grab object-cover rounded-full duration-700 scale-[75%] hover:scale-[85%]" src="/storage/{{ $element->image }}" alt="{{ $element->titre }}">
-                            <span class="absolute top-0 inset-x-0 text-center text-sm font-thin z-10">today</span>
                         </div>
                         <h3 class="text-lg font-bold">{{ $element->titre }}</h3>
                         <p class="py-3 text-thin text-sm text-slate-500 text-center">{{ $element->description }}</p>
                         <span class="rounded-xl px-2 font-semibold text-base bg-red-500/90">{{ $element->prix }} Gnf</span>
-                        <a href="{{ route('partenaires.element.edit', ['element' => $element->id]) }}" class="absolute top-1 left-2 text-yellow-500 font-black text-lg h-8 w-8 bg-sky-200 rounded-full cursor-pointer flex items-center justify-center hover:bg-sky-600 hover:duration-700 "><i class="fa fda-spin fa-cog"></i></a>
-                        <a href="" onclick="return confirm('Êtes-vous sûr de continuer ?')" class="absolute top-1 right-2 text-red-400 font-black text-lg h-8 w-8 p-1 bg-red-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-600 hover:text-white hover:duration-700 "><i class="fa fa-trash-o"></i></a>
+                        <a href="{{ route('partenaires.element.edit', ['element' => $element->id]) }}" class="absolute top-1 left-2 text-yellow-500 font-black text-lg h-8 w-8 bg-sky-200 rounded-full cursor-pointer flex items-center justify-center hover:bg-sky-600 hover:duration-700 "><i class="fa fda-spin fa-edit"></i></a>
+                        <span class=" inset-x-0 text-center text-sm font-thin z-10">{{$element->created_at}} </span>
+
+                        <form method="post" action="{{ route('partenaires.element.destroy', $element) }}" class="inline">
+                                @csrf
+                                @method('delete')
+                                <button onclick="return confirm('Est-vous sur de continuer ?')" class="absolute top-1 right-2 text-red-400 font-black text-lg h-8 w-8 p-1 bg-red-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-600 hover:text-white hover:duration-700 "><i class=" fa fa-trash-o"></i>
+                                </button>
+                        </form>
+                            
                     </div>
                 @endforeach
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Restaurant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
+use App\Models\Template;
 use App\Http\Requests\Restaurant\RestaurantRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +45,11 @@ class RestaurantController extends Controller
         $data['avatar'] = $imagePath;
         $data['user_id'] = $user->id;
         $restaurant = Restaurant::create($data);
+
+            $template = Template::create([
+                'restaurant_id' => $restaurant->id,
+            ]);
+
         return to_route("partenaires.index")->with("success", 'Restaurant ajouter avec succes');
     }
 

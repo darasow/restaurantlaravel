@@ -23,7 +23,6 @@ class ElementController extends Controller
     }
     public function index()
     {
-        $categoriesWithElements = Categorie::with('elements')->get();
         return View("partenaire.element.element",['restaurant' => Session::get('restaurant'), 'categories' => $this->getAllCategoriesRestaurant()]);
 
     }
@@ -89,8 +88,15 @@ class ElementController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Element $element)
     {
-        //
+        $image = $element->image;
+    
+            if ($image) {
+                Storage::disk('public')->delete($image);
+            }
+        $element->delete();
+        return to_route("partenaires.element.index")->with("success", 'Element supprimer avec succes');
+
     }
 }

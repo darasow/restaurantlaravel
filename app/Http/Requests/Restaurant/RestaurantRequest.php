@@ -26,6 +26,7 @@ class RestaurantRequest extends FormRequest
                 'nom' => 'required|string',
                 'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image avec des extensions autorisées et une taille maximale de 2 Mo
                 'user_id' => 'exists:users,id', // L'utilisateur associé doit exister dans la table users
+                'template_id' => 'exists:templates,id', 
             ];
     }
 }

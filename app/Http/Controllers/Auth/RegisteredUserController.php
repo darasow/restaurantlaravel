@@ -37,9 +37,7 @@ public function store(Request $request): RedirectResponse
         'password' => ['required', 'confirmed', Rules\Password::defaults()],
     ]);
 
-    // Enregistrement de l'image
-    // $imagePath = $request->file('image')->store('avatars', 'public');
-
+   
     $user = User::create([
         'name' => $request->name,
         'email' => $request->email,
@@ -50,7 +48,7 @@ public function store(Request $request): RedirectResponse
 
     Auth::login($user);
 
-    return redirect(RouteServiceProvider::HOME);
+     return to_route("partenaires.index");
 }
 
 }

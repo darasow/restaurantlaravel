@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\Categorie;
 use App\Models\User;
 use App\Models\Table;
+use App\Models\Template;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,6 +31,10 @@ class Restaurant extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function template()
+    {
+        return $this->belongsTo(Template::class);
     }
 
 }

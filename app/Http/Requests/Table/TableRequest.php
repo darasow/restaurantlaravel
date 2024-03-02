@@ -23,7 +23,7 @@ class TableRequest extends FormRequest
     {
         return [
             'nbPlace' => 'required|integer',
-            'restaurant_id' => 'required|exists:restaurants,id',
+            'restaurant_id' => 'exists:restaurants,id',
         ];
     }
 }

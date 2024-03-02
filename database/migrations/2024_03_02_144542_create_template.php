@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('template', function (Blueprint $table) {
             $table->id();
-            $table->string("libelle");
+            $table->string("libelle")->default("template1");
             $table->unsignedBigInteger('restaurant_id');
-            $table->string('image')->nullable();
             $table->timestamps();
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('template');
     }
 };

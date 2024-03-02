@@ -13,20 +13,32 @@
 
         
             <h1 class="font-black text-orange-600 text-xl md:text-3xl py-5 px-2">Mes Tables :</h1>
+        
+
+        <div class="mb-5">
+            <div class="grid grid-cols-1 place-items-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
             @foreach ($tables as $table)
-                <div class="bg-gray-200 grid grid-cols-4 rounded-lg">
-                    <div class="col-span-2 flex flex-col items-center">
-                        <p class="font-thin">Identifiant : {{ $table->id }}</p>
-                        <p class="font-thin">Date d'ajout : {{ $table->created_at }}</p>
-                        <p class="font-thin">Nombre de place : {{ $table->nbPlace }}</p>
+                    <div class="bg-green-300/50 pb-5 hover:bg-green-300/90 hover:duration-700 px-4 flex flex-col justify-center items-center space-y-0 rounded-2xl relative">
+                        <h3 class="text-lg font-bold">Identifiant : {{ $table->id }}</h3>
+                        <p class="py-3 text-thin text-sm text-slate-500 text-center">Date d'ajout : {{ $table->created_at }}</p>
+                        <p class="py-3 text-thin text-sm text-slate-500 text-center">Nombre de place : {{ $table->nbPlace }}</p>
+                        <a href="{{ route('partenaires.table.edit', ['table' => $table->id]) }}" class="absolute top-1 left-2 text-yellow-500 font-black text-lg h-8 w-8 bg-sky-200 rounded-full cursor-pointer flex items-center justify-center hover:bg-sky-600 hover:duration-700 "><i class="fa fda-spin fa-edit"></i></a>
+                        <form method="post" action="{{ route('partenaires.table.destroy', $table) }}" class="inline">
+                                @csrf
+                                @method('delete')
+                                <button onclick="return confirm('Est-vous sur de continuer ?')" class="absolute top-1 right-2 text-red-400 font-black text-lg h-8 w-8 p-1 bg-red-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-600 hover:text-white hover:duration-700 "><i class=" fa fa-trash-o"></i>
+                                </button>
+                        </form>
+                            
                     </div>
-                </div>
-                <hr>
-            @endforeach
+                @endforeach
+            </div>
+        </div>
+
         </section>
 
         <!-- Formulaires d'ajout ... -->
-<form method="post" action="{{ isset($tableedit) ? route('partenaires.table.update', $tableedit->id) : route('partenaires.table.store') }}" class="bg-red-100 p-2 order-first md:order-last md:fixed md:right-0 md:top-20 md:w-[26%] lg:w-[28%] xl:w-[33%] z-40">
+<form method="post" action="{{ isset($tableedit) ? route('partenaires.table.update', $tableedit) : route('partenaires.table.store') }}" class="bg-red-100 p-2 order-first md:order-last md:fixed md:right-0 md:top-20 md:w-[26%] lg:w-[28%] xl:w-[33%] z-40">
     @csrf
     @isset($tableedit)
         @method('PUT')

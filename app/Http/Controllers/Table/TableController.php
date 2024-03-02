@@ -33,13 +33,11 @@ class TableController extends Controller
      */
     public function store(TableRequest $request)
     {
-        
         $data = $request->validated();
         $data['restaurant_id'] = Session::get('restaurant')->id;
         $table = Table::create($data);
         
         return to_route("partenaires.table.index")->with("success", 'Table ajouter avec succes');
-    
     }
 
     /**
@@ -53,24 +51,30 @@ class TableController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Table $table)
     {
-        //
+
+        return View("partenaire.table.table", ['tableedit' => $table, 'restaurant' => Session::get('restaurant'), 'tables' => $this->getAllTablesRestaurant()]);
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TableRequest $request, Table $table)
     {
-        //
+        $table->update([
+            'nbPlace' => $request->nbPlace,
+        ]);
+        return to_route("partenaires.table.index")->with("success", 'Table modifier avec succes');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Table $table)
     {
-        //
+        $table->delete();
+        return to_route("partenaires.table.index")->with("success", 'Table supprimer avec succes');
     }
 }

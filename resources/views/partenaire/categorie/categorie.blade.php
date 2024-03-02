@@ -14,11 +14,11 @@
                      @forelse($categories as $categorie)
 
                         <div class="bg-green-300/50 hover:bg-green-300/90 hover:duration-700 max-w-[180px] flex flex-col justify-center items-center space-y-0 rounded-2xl relative">
-                            <span class=" inset-x-0 text-center text-sm font-thin z-10">{{$categorie->created_at}} </span>
                             <img class="w-[180px] h-[180px] cursor-grab object-cover rounded-full duration-700 scale-[65%] hover:scale-75" src="/storage/{{$categorie->image}}">
                             <h3 class="text-lg font-bold pb-5">{{$categorie->libelle}}</h3>
-                            <a href="{{ route('partenaires.categorie.edit', ['categorie' => $categorie->id]) }}"><i class="absolute top-1 left-2 text-yellow-500 font-black text-lg h-8 w-8 bg-sky-200 rounded-full cursor-pointer flex items-center justify-center hover:bg-sky-600 hover:duration-700 fa fda-spin fa-cog"></i></a>
-                           
+                            <a href="{{ route('partenaires.categorie.edit', ['categorie' => $categorie->id]) }}"><i class="absolute top-1 left-2 text-yellow-500 font-black text-lg h-8 w-8 bg-sky-200 rounded-full cursor-pointer flex items-center justify-center hover:bg-sky-600 hover:duration-700 fa fda-spin fa-edit"></i></a>
+                            <span class=" inset-x-0 text-center text-sm font-thin z-10">{{$categorie->created_at}} </span>
+
                             <form method="post" action="{{ route('partenaires.categorie.destroy', $categorie) }}" class="inline">
                                 @csrf
                                 @method('delete')
