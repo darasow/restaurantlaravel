@@ -1,9 +1,9 @@
 (function(){
 
-    listeElement = Array.from(document.querySelectorAll(".element"))
+    listeElement = Array.from(document.querySelectorAll(".element_info"))
     listeElement.forEach(element =>{
     element.addEventListener("click", (e)=>{
-                    let oui = element.parentNode.querySelector(".oui");
+                    let oui = element.parentNode.querySelector(".fermer");
                     let modal = element.parentNode.querySelector(".modal");
                     modal.style.display = 'flex';
                     modal.style.zIndex = 50

@@ -37,17 +37,17 @@
                     <i class="cursor-pointer border-2 border-red-400 rounded-xl hover:bg-white hover:duration-700 min-w-max text-red-400  p-2 fa fa-envelope  your-address"> <span class="text-black " id="add-address">{{ $restaurant->user->email }}</span></i>
 					<i class="cursor-pointer border-2 border-red-400 rounded-full hover:bg-white hover:duration-700 p-2 max-w-min md:min-w-max text-red-400 fa fa-user-circle"> <span class="text-black hidden md:inline-block" id="circle">{{ $restaurant->user->name }}</span></i>
                 </div>
-				
+
 			</div>
 
-	
+
 			<aside class="z-10 bg-red-100 md:max-w-[250px] fixed bottom-0 left-0 right-0 md:top-24 md:right-auto overflow-x-auto  grouSp">
 				<div class="flex justify-around items-cxenter md:flex-col cursor-pointer w-full min-w-max  uppercase font-semibold">
 					<a href="" class="p-3 grid grid-cols-1 place-content-center place-items-center rounded-lg border-x-2 md:border-x-0 md:border-y-2 min-w-max w-full border-black hover:bg-white hover:duration-1000"><i class="fa fa-shopping-cart"></i><span class="md:hiWdden group-hover:inline-block" >Commandes</span></a>
 					<a href="{{ route('partenaires.table.index') }}" id="index" class="target:bg-black target:shadow-lg p-3 grid grid-cols-1 place-content-center place-items-center rounded-lg border-x-2 md:border-x-0 md:border-y-2 border-black hover:bg-white min-w-max w-full hover:duration-1000 "> <i class="fa fa-table"></i><span class="md:hidWden group-hover:inline-block group-hover:duration-[5s]">Tables</span></a>
 					<a href="{{ route('partenaires.element.index') }}" id="elements" class="target:bg-black target:shadow-lg p-3 grid grid-cols-1 place-content-center place-items-center rounded-lg border-x-2 md:border-x-0 md:border-y-2 border-black hover:bg-white min-w-max w-full hover:duration-1000"><i class="fa fa-list"></i><span class="md:hiddeWn group-hover:inline-block" >Elements</span></a>
 					<a href="{{ route('partenaires.categorie.index') }}" id="categories" class="target:bg-black target:shadow-lg p-3 grid grid-cols-1 place-content-center place-items-center rounded-lg border-x-2 md:border-x-0 md:border-y-2 min-w-max w-full border-black hover:bg-white hover:duration-1000"><i class="fa fa-bars"></i><span class="md:hiddWen group-hover:inline-block">Categories</span></a>
-					<a href="" class="p-3 grid grid-cols-1 place-content-center place-items-center rounded-lg border-x-2 md:border-x-0 md:border-y-2 border-black hover:bg-white min-w-max w-full hover:duration-1000"><i class="fa fa-wpforms"></i><span class="md:hidWden group-hover:inline-block">templates</span></a>
+					<a href="{{ route('partenaires.template.index') }}" class="p-3 grid grid-cols-1 place-content-center place-items-center rounded-lg border-x-2 md:border-x-0 md:border-y-2 border-black hover:bg-white min-w-max w-full hover:duration-1000"><i class="fa fa-wpforms"></i><span class="md:hidWden group-hover:inline-block">templates</span></a>
 					<a href="" id="clients" class="target:bg-black target:shadow-lg p-3 grid grid-cols-1 place-content-center place-items-center rounded-lg border-x-2 md:border-x-0 md:border-y-2 min-w-max w-full border-black hover:bg-white hover:duration-1000"><i class="fa fa-cutlery"></i><span class="md:hiddWen group-hover:inline-block">Restaurants</span></a>
 				</div>
 			</aside>

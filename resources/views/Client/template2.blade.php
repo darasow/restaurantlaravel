@@ -38,14 +38,38 @@
                             <div class="flex justify-around max-h-10 w-full items-center">
                                 <h2 class="font-semibold text-lg w-1/3 ">{{$element->titre}}</h2>
                                 <p class="font-bold w-1/3">{{$element->prix}} Gnf</p>
+                               
 								<button  data-id="{{$element->id}}" class="element elem min-w-max w-1/4 bg-red-400 rounded-xl p-2 hover:bg-red-600 hover:duration-700 hover:text-white font-thin flex items-center justify-center"><span class="hidden sm:block">Plus d'info </span> <i class="fa fa-info-circle"></i></button>
+								<button  data-id-commande="{{$element->id}}" class="ajouterPanier elem min-w-max w-1/4 bg-blue-300 rounded-xl p-2 hover:bg-blue-400 hover:duration-700 hover:text-white font-thin flex items-center justify-center"><span class="hidden sm:block">Ajouter au panier </span> <i class="fa fa-info-circle"></i></button>
+                                <div id="confirmation-modal-ajout" class="modal_ajout">
+										<div class="modal-content">
+											<p>Voulez-vous vraiment ajouter ?</p>
+											<div class="modal-buttons">
+												<button class="oui">Oui</button>
+												<button class="non">Non</button>
+											</div>
+										</div>
+									</div>	
+                                <span date-id-table="{{$restaurant->id}}"></span>
+                               
                                 <!--Boite modale-->
+                                <div class="font-thin mx-4 flex flex-col items-center w-[20%] px-4 relative">
+										<button class="absolute top-1/2 -translate-y-1/2 left-0 decrement">
+										  <i class="text-xl hover:text-red-500 fa fa-minus"></i>
+										</button>
+
+										 <span class="text-2xl font-bold quantite" id="1" date-variable-value="">1</span>
+										
+										<button class="absolute top-1/2 -translate-y-1/2 right-0 increment">
+										  <i class="text-xl hover:text-red-500 fa fa-plus"></i>
+										</button>
+									</div>
 								<div id="confirmation-modal" class="modal">
 										<div class="modal-content">
 											<p class="text-xs md:text-base text-center font-black text-orange-500">Information du plat<i class="fa fa-info-circle"></i></p>
 											<h3 class="text-orange-200 text-center text-2xl">{{$element->titre}}</h3>
                                             <p class="min-w-[200px] flex items-center justify-center text-base md:text-lg text-gray-400 py-10">{{$element->description}}</p>
-											
+									
 											<div class="modal-buttons">
 												<button class="oui py-2 px-4 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 hover:duration-1000 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Fermer</button>
 											</div>

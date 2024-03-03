@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Restaurant;
 use App\Models\Categorie;
+use App\Models\Template;
 
 class ClientController extends Controller
 {
@@ -28,58 +29,13 @@ class ClientController extends Controller
         if($restaurantWithTable)
         {
             $categories = Categorie::where('restaurant_id', $restaurantWithTable->restaurant_id)->get();
-            return View("client.template2",['categories' => $categories, 'restaurant' => $restaurantWithTable]);
+            $template = Template::where('restaurant_id',  $restaurantWithTable->restaurant_id)->first();
+            $vue = ($template->libelle == "template1")? "client.template1" : "client.template2";
+            return View($vue,['categories' => $categories, 'restaurant' => $restaurantWithTable]);
         }else {
-            dd("Restaurant non trouver");
+            return View("404.404");
         }
       
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

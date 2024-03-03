@@ -8,6 +8,7 @@ use App\Http\Controllers\Restaurant\RestaurantController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Element\ElementController;
 use App\Http\Controllers\Table\TableController;
+use App\Http\Controllers\Template\TemplateController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -24,14 +25,13 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
 
-        $user = Auth::user();;
-        $restaurants = $user->restaurants()->get();
-        return view('partenaire.acceuil', ['restaurants' => $restaurants]);
-    
+    $user = Auth::user();
+    $restaurants = $user->restaurants()->get();
+    return view('partenaire.acceuil', ['restaurants' => $restaurants]);
 })->middleware(['auth', 'verified'])->name('partenaire');
 
 
-Route::prefix('partenaires')->middleware('auth')->name('partenaires.')->group(function(){
+Route::prefix('partenaires')->middleware('auth')->name('partenaires.')->group(function () {
 
     Route::resource("/", PartenaireController::class);
     Route::resource("reference", PartenaireController::class);
@@ -40,8 +40,7 @@ Route::prefix('partenaires')->middleware('auth')->name('partenaires.')->group(fu
     Route::resource("restaurant", RestaurantController::class);
     Route::resource("element", ElementController::class);
     Route::resource("table", TableController::class);
-    Route::resource("table", TableController::class);
-
+    Route::resource("template", TemplateController::class);
 });
 
 Route::get('/restaurant', [ClientController::class, 'index'])->name('restaurant.index');
@@ -54,4 +53,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

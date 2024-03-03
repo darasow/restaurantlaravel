@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Template;
 
 use App\Http\Controllers\Controller;
+use App\Models\Template;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TemplateController extends Controller
 {
@@ -12,7 +15,7 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        
+        return View("partenaire.template.template",['restaurant' => Session::get('restaurant')]);
     }
 
 
@@ -21,7 +24,15 @@ class TemplateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $restaurant = Session::get('restaurant');
+        $template = Template::where('restaurant_id', $restaurant->id);
+        $template->update([
+            'libelle' => $request->template,
+        ]);
+        return to_route("partenaires.template.index")->with("success", 'Template modifier avec succes');
+
+
     }
 
 

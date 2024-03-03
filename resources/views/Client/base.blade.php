@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css', ])
+	@vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css', {src: 'resources/js/client/script.js', defer: true}])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+
     <title>@yield('title')</title>
 </head>
 <body class="min-h-[100vh] overflow-x-hidden md:w-[100vw] font-serifs leading-normal bg-gradient-to-l from-red-100 to-bg-red-200 tracking-normal">
@@ -33,40 +34,32 @@
 					</div>
 				</div>
 
-		</header>
+</header>
 
 
 
         @yield('content')
 
 
-		<script>
+  <script>
 
-			document.addEventListener("DOMContentLoaded", function() {
+	document.addEventListener("DOMContentLoaded", function() {
 				AOS.init();
-			});
+	});
 
 
-		(function(){
 
-					listeElement = Array.from(document.querySelectorAll(".element"))
-					listeElement.forEach(element =>{
-					element.addEventListener("click", (e)=>{
-									let oui = element.parentNode.querySelector(".oui");
-									let modal = element.parentNode.querySelector(".modal");
-									modal.style.display = 'flex';
-									modal.style.zIndex = 50
-									oui.addEventListener('click', ()=>{
-										modal.style.display = 'none';
 
-									})
-							})  
-						});
-					
-			// Appel de la fonction pour ajouter une variable
-		})()
 
-		</script>
+
+// (function(){
+
+
+
+// Appel de la fonction pour ajouter une variable
+// })()
+
+  </script>
 </body>
 </html>
 
