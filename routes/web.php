@@ -9,6 +9,8 @@ use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Element\ElementController;
 use App\Http\Controllers\Table\TableController;
 use App\Http\Controllers\Template\TemplateController;
+use App\Http\Controllers\PanierClient\PanierController;
+use App\Http\Controllers\Commande\CommandeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -41,10 +43,22 @@ Route::prefix('partenaires')->middleware('auth')->name('partenaires.')->group(fu
     Route::resource("element", ElementController::class);
     Route::resource("table", TableController::class);
     Route::resource("template", TemplateController::class);
+    Route::resource("commande", CommandeController::class);
 });
 
 Route::get('/restaurant', [ClientController::class, 'index'])->name('restaurant.index');
 
+Route::prefix('panierClient')->name('panierClient.')->group(function () {
+   
+    Route::resource("ajouterPanier", PanierController::class);
+
+});
+
+Route::prefix('commande')->name('commande.')->group(function () {
+   
+    Route::resource("ajouterCommande", CommandeController::class);
+
+});
 
 
 Route::middleware('auth')->group(function () {

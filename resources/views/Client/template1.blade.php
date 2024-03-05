@@ -24,7 +24,8 @@
 	
 		<!--Le Menu-->
 			<section class="flex justify-centerh space-x-5 items-centerh min-w-full flex-col">
-            @foreach($categories as $categorie)
+           
+			@foreach($categories as $categorie)
 				<h2 id="{{$categorie->libelle}}" 
 				data-aos="fade-right"
 				data-aos-easing="ease-in-sine"
@@ -60,15 +61,7 @@
 										  <i class="text-xl hover:text-red-500 fa fa-plus"></i>
 										</button>
 									</div>
-									<div id="confirmation-modal-ajout" class="modal_ajout">
-										<div class="modal-content">
-											<p>Voulez-vous vraiment ajouter ?</p>
-											<div class="modal-buttons">
-												<button class="oui">Oui</button>
-												<button class="non">Non</button>
-											</div>
-										</div>
-									</div>
+								
 									<div
 										data-aos="zoom-out-down"
 										data-aos-easing="linear"
@@ -92,14 +85,14 @@
 									<button data-id="{{$element->id}}" data-aos="zoom-in-up" data-aos-easing="linear" data-aos-duration="1000" class=" element_info elem w-[80%] bg-red-400 rounded-xl p-2 hover:bg-red-600 hover:duration-700 hover:text-white font-thin">
 										Plus d'info <i class="fa fa-info-circle"></i>
 									</button>
-									<button  data-id-commande="{{$element->id}}" class="ajouterPanier element_panier min-w-max w-1/4 bg-blue-300 rounded-xl p-2 hover:bg-blue-400 hover:duration-700 hover:text-white font-thin flex items-center justify-center"><span class="hidden sm:block">Ajouter au panier </span> <i class="fa fa-info-circle"></i></button>
-								
 									
-									
-									
-								
-									<span date-id-table="{{$restaurant->id}}"></span>
-	
+									<form  class="" onsubmit="return confirm('Êtes-vous sûr de vouloir ajouter cet élément au panier ?')" action="{{route('panierClient.ajouterPanier.store', ['idElement' => $element, 'idTable' => $restaurant->id])}}" method="post">
+										@csrf
+										<input type="hidden" name="quantite" class="hiddenQuantite" value="">
+										
+										<button class=" ajouterPanier min-w-max w-1/4 bg-blue-300 rounded-xl p-2 hover:bg-blue-400 hover:duration-700 hover:text-white font-thin flex items-center justify-center" > <span class="hidden sm:block">Ajouter au panier</span> <i class="fa fa-info-circle"></i></button>
+
+									</form>	
 								
 
 								</div>

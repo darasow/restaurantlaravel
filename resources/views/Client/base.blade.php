@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	@vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css', {src: 'resources/js/client/script.js', defer: true}])
+	@vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css',  'resources/js/script.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
@@ -25,7 +25,11 @@
 							<span class="text-black text-sm sm:text-base " id="add-address">Restaurant: {{ $restaurant->nom }}</span>
 						</i>
 					</a>
+                     
+					<a href="{{route('panierClient.ajouterPanier.index')}}" class="panierUser">
+						<i class="cursor-pointer sm:border-2 sm:border-red-400 rounded-full hover:bg-white hover:duration-700 py-2 px-3 text-xl font-semibold fa fa-cart-plus"> <span class="text-black text-lg hidden sm:inline-block px-2 nbElement" id="cart-plus">{{$nbAjout}}</span> <span class=" text-black">{{ ($nbAjout > 1)? 'items' : 'item' }}</span></i>
 
+					</a>
 					
 					<div class="text-red-500">
 						<i class="cursor-pointer border-[1px] border-red-400 rounded-full hover:bg-white hover:duration-700 py-2 px-3 text-xl font-bold fa fa-commenting-o md:order-first">
@@ -50,14 +54,67 @@
 
 
 
+	(function(){
+	
+	
+		var listeincrement = Array.from(document.querySelectorAll(".increment"))
+		var listedecrement = Array.from(document.querySelectorAll(".decrement"))
+		var quantite = 1
+		listeincrement.forEach(element => {
+					element.addEventListener("click", ()=>{
+						let span  = element.parentNode.querySelector(".quantite")
+						let contenu = parseInt(span.textContent)
+						if(contenu == 10) return
+						quantite  = span.textContent = ++contenu
+					})
+	
+				});
+
+		listedecrement.forEach(element => {
+		element.addEventListener("click", ()=>{
+			let span  = element.parentNode.querySelector(".quantite")
+			let contenu = parseInt(span.textContent)
+			if(contenu == 1) return
+			quantite = span.textContent = --contenu
+		})
+	});
 
 
-// (function(){
 
 
 
-// Appel de la fonction pour ajouter une variable
-// })()
+
+
+listeElement = Array.from(document.querySelectorAll(".ajouterPanier"))
+listeElement.forEach(element =>{ 
+element.addEventListener("click", (e)=>{
+					let hiddenQuantite =  element.parentNode.querySelector(".hiddenQuantite")
+					hiddenQuantite.value = quantite
+
+	})  
+});
+
+
+
+
+
+listeElement = Array.from(document.querySelectorAll(".element_info"))
+listeElement.forEach(element =>{
+element.addEventListener("click", (e)=>{
+		let oui = element.parentNode.querySelector(".fermer");
+		let modal = element.parentNode.querySelector(".modal");
+		modal.style.display = 'flex';
+		modal.style.zIndex = 50
+		oui.addEventListener('click', ()=>{
+		modal.style.display = 'none';
+
+		})
+})  
+});
+
+})()
+
+
 
   </script>
 </body>

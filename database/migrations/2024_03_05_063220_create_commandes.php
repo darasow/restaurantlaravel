@@ -9,19 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    
     public function up(): void
     {
-        Schema::create('panier_Clients', function (Blueprint $table) {
+        Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('element_id');
+            $table->unsignedBigInteger('panier_client_id');
             $table->unsignedBigInteger('table_id');
-            $table->double('montant');
-            $table->integer('quantite');
-            $table->boolean('estCommander')->default(false);
             $table->timestamps();
-            $table->foreign('element_id')->references('id')->on('elements')->onDelete('cascade');
+            $table->foreign('panier_client_id')->references('id')->on('panier_clients')->onDelete('cascade');
             $table->foreign('table_id')->references('id')->on('tables')->onDelete('cascade');
+
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('panier_Clients');
+        Schema::dropIfExists('commandes');
     }
 };

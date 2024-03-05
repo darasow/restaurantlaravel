@@ -17,6 +17,13 @@
         // Appel de la fonction pour ajouter une variable
 })()
 
+
+
+
+
+
+
+
 // TRUNCATE TABLE `templatesusers_panieruser`;
 // https://waytolearnx.com/
 

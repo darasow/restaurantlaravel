@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Element;
+use App\Models\Restaurant;
 
 class categorie extends Model
 {
@@ -19,5 +20,10 @@ class categorie extends Model
     public function elements()
     {
         return $this->hasMany(Element::class);
+    }
+
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
     }
 }

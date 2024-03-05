@@ -17,4 +17,11 @@ class Element extends Model
         'categorie_id',
     ];
 
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
+
+ 
+    
 }
